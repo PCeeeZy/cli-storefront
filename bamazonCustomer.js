@@ -6,7 +6,7 @@ const inquirer = require("inquirier");
 const fs = require("fs");
 
 const pw = require("./mySQL-PW.js");
-let mySQLpw = pw.password;
+const mySQLpw = pw.password;
 
 
 // mySQL CONNECTION
@@ -139,17 +139,37 @@ function customerBuy() {
                 // If not, the app should log a phrase like `Insufficient quantity!`, and then prevent the order from going through.
                 else {
                     console.log("Insufficient Quantity!");
-                    // ask if they are done ordering or want to continue
 
+                    // ask if they are done ordering or want to continue
                     restartLoop();
                 }
             })
     })
 }
 
+
 // Restart Loop Inquirer
+// ======================================================================================
+
 // This will happen after completion of every attempt at order.
 // Give option to order again or exit and end connection.
+function restartLoop() {
+    inquirer.prompt([
+        {
+            name: "agaane",
+            type: "list",
+            choices: ["Purchase More", "Done Purchasing"],
+            message: "Would you like to make another purchase?"
+        }
+    ]).then(function(answer) {
+        if (err) throw err;
+        if (answer.agaane === "Purchase More") {
+            customerBuy();
+        } else {
+            connection.end();
+        }
+    })
+}
 
 
 
