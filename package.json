@@ -19,7 +19,7 @@
   "dependencies": {
     "chalk": "^2.4.1",
     "figlet": "^1.2.1",
-    "inquirer": "^6.2.1",
+    "inquirer": "^6.2.2",
     "mysql": "^2.16.0"
   }
 }
